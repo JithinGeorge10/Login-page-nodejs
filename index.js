@@ -1,16 +1,17 @@
 const express = require('express');
+require('dotenv').config()
+const morgan = require('morgan')
 const session = require('express-session');
 const path = require('path')
 
 const app = express()
-const credentials = {
-    email: 'jithin@gmail.com',
-    password: 'qwe@123'
-}
+
 const data = require('./data.js')
 
-app.use(express.static(path.join(__dirname, "public")));
+const credentials= { email:process.env.EMAIL, password:process.env.PASSWORD}
 
+app.use(express.static(path.join(__dirname, "public")));
+app.use(morgan('dev'))
 
 app.use((req, res, next) => {
     res.set("Cache-Control", "no-store");
@@ -31,7 +32,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', (req, res) => {
-
+    
     if (req.session.log) {
         res.render('home', { data })
     } else {
@@ -57,4 +58,4 @@ app.post('/logout', (req, res) => {
     res.redirect('/')
 
 })
-app.listen(3000)
+app.listen(process.env.PORT)
