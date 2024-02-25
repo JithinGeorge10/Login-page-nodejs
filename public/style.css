@@ -1,0 +1,16 @@
+.login-page{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+   margin-top: 200px;
+   
+}
+
+.login{
+   
+    border-radius: 2px solid red;
+}
+
+body{
+    background-color: rgba(122, 43, 226, 0.425);
+}
