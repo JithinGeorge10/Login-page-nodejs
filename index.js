@@ -8,7 +8,7 @@ const app = express()
 
 const data = require('./data.js')
 
-const credentials= { email:process.env.EMAIL, password:process.env.PASSWORD}
+const credentials = { email: process.env.EMAIL, password: process.env.PASSWORD }
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan('dev'))
@@ -32,7 +32,7 @@ app.set('view engine', 'ejs')
 
 
 app.get('/', (req, res) => {
-    
+
     if (req.session.log) {
         res.render('home', { data })
     } else {
